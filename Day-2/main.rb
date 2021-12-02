@@ -5,11 +5,12 @@ values = File.read("./data.txt").split("\n").map{|e| e.split}.map {|e| [e[0], e[
 depth, position, aim = 0, 0, 0
 
 values.each do |elem|
-  aim += elem[1] if elem[0] == 'down'
-  aim -= elem[1] if elem[0] == 'up'
-  if elem[0] == 'forward'
-    position += elem[1]   
-    depth += aim * elem[1]
+  instruction, value = *elem
+  aim += value if instruction == 'down'
+  aim -= value if instruction == 'up'
+  if instruction == 'forward'
+    position += value  
+    depth += aim * value
   end
 end
 
